@@ -1,6 +1,7 @@
 ## Serverless 테스트
 
-## npm install -g serverless
+## npm install -g serverless 현재 Version 4 로 인증 별도 필요 - npm install -g serverless@3
+## version 3 로 작업
 
 ## API gateway 설정
 ![alt text](image.png)
