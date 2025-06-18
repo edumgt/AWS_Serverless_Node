@@ -52,7 +52,7 @@ aws lambda create-function --function-name edumgt-lambda-api --runtime nodejs20.
 ![alt text](image-10.png)
 
 ## URL 확인 - 목록 중 ID 가 있습니다.
-## https://osbi91skjc.execute-api.ap-northeast-2.amazonaws.com/hello
+## https://osbi91skjc.execute-api.ap-northeast-2.amazonaws.com/dev
 ![alt text](image-11.png)
 
 ## 스테이지를 생성하지 않으면 API Gateway는 외부 호출 가능한 URL을 생성하지 않습니다.
