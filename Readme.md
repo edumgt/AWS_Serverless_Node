@@ -1,3 +1,5 @@
+## notion 주소 - https://www.notion.so/CodePipeline-2cc62063ab104fac8ecb70a230d1aca2
+## notion 초대 완료
 ## 0630 수업
 
 ## Serverless 테스트
