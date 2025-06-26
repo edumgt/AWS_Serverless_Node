@@ -1,3 +1,7 @@
+## notion 주소 - https://www.notion.so/CodePipeline-2cc62063ab104fac8ecb70a230d1aca2
+## notion 초대 완료
+## 0630 수업
+
 ## Well-Architecture
 ## AWS 측에서 직접 사업 참여하여 인프라 구성한 사례 또는 고객의 성공 사례를 제공
 ## https://aws.amazon.com/ko/architecture
