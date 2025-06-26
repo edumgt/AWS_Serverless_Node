@@ -1,3 +1,21 @@
+## Well-Architecture
+## AWS 측에서 직접 사업 참여하여 인프라 구성한 사례 또는 고객의 성공 사례를 제공
+## https://aws.amazon.com/ko/architecture
+![alt text](image-37.png)
+![alt text](image-38.png)
+
+## 구성도 이미지를 다운로드하여 ChatGPT 에 업로드 및 분석
+https://chatgpt.com/share/685c91a4-5644-8007-9866-b09cda436e76
+
+## drawio.com
+https://www.drawio.com/ 에서 구성도 그리기
+## drawio 의 다이어그램을 github 연동하여 저장
+![alt text](image-39.png)
+
+## github 와 연동하여, repo 를 지정하여 생성
+![alt text](image-40.png)
+
+
 ## Serverless 테스트
 
 ## npm install -g serverless 현재 Version 4 로 인증 별도 필요 - npm install -g serverless@3
