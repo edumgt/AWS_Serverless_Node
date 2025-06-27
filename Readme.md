@@ -43,6 +43,7 @@ https://www.drawio.com/ 에서 구성도 그리기
 
 ## index.js 작성
 ## Compress-Archive -Path index.js -DestinationPath function.zip
+## 일반 압축 툴 사용해도 무방
 
 ## 람다펑션 등록
 ## 펑션 등록
