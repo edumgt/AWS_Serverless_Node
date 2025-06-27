@@ -1,3 +1,9 @@
+## forking 필요한 github
+## https://github.com/Carlosrincong/AWS-Solutions-Architect-Associate
+## https://github.com/stacksimplify/aws-eks-kubernetes-masterclass
+## https://github.com/stacksimplify/kubernetes-fundamentals
+## https://github.com/stacksimplify/docker-fundamentals
+
 ## notion 주소 - https://www.notion.so/CodePipeline-2cc62063ab104fac8ecb70a230d1aca2
 ## notion 초대 완료
 ## 0630 수업
