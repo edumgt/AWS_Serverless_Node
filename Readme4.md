@@ -1,6 +1,9 @@
-##
-![image](https://github.com/user-attachments/assets/6f7ae91d-6d57-4221-bc52-b11bdfc81df0)
+# 참고 이미지 및 링크 (공개용)
 
-## https://www.notion.so/role-pipeline-EKS-pod-svc-fbe7709c01e74cd9819b2867decb6ab4
+> 공개용으로 개인 링크는 마스킹했습니다.
 
-## 위의 노션 참고
+## 1) 참고 이미지
+![참고 이미지](https://github.com/user-attachments/assets/6f7ae91d-6d57-4221-bc52-b11bdfc81df0)
+
+## 2) 추가 참고 링크
+- Notion: <REDACTED_NOTION_URL>

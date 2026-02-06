@@ -1,4 +1,6 @@
-# AWS Serverless Node 학습 정리
+# AWS Serverless Node 학습 정리 (공개용)
+
+> 공개 공유를 위해 민감정보(계정 ID, ARN, 개인 링크, API ID 등)는 마스킹했습니다.
 
 ## 1) 참고 링크
 - Fork 필요 GitHub
@@ -7,20 +9,18 @@
   - https://github.com/stacksimplify/kubernetes-fundamentals
   - https://github.com/stacksimplify/docker-fundamentals
 - Notion
-  - CodePipeline: https://www.notion.so/CodePipeline-2cc62063ab104fac8ecb70a230d1aca2
-  - Role/Pipeline/EKS: https://www.notion.so/role-pipeline-EKS-pod-svc-fbe7709c01e74cd9819b2867decb6ab4
+  - CodePipeline: <REDACTED_NOTION_URL>
+  - Role/Pipeline/EKS: <REDACTED_NOTION_URL>
 
 ## 2) AWS Well-Architected
 - AWS 공식 아키텍처 사례: https://aws.amazon.com/ko/architecture
-- 참고 이미지
-  - Well-Architected 소개 화면
 
 ![Well-Architected 소개](image-37.png)
 ![Well-Architected 참고](image-38.png)
 
 ## 3) 구성도 작성
 - ChatGPT에 구성도 이미지 업로드 후 분석
-  - https://chatgpt.com/share/685c91a4-5644-8007-9866-b09cda436e76
+  - <REDACTED_CHATGPT_SHARE_URL>
 - draw.io에서 구성도 작성 후 GitHub 연동 저장
 
 ![draw.io 구성도 작성](image-39.png)
@@ -70,12 +70,11 @@ API Gateway는 클라이언트(웹/앱 등)와 백엔드(Lambda, EC2 등) 사이
   aws lambda create-function \
     --function-name edumgt-lambda-api \
     --runtime nodejs20.x \
-    --role arn:aws:iam::086015456585:role/Lamda_S3_Test \
+    --role arn:aws:iam::<ACCOUNT_ID>:role/<ROLE_NAME> \
     --handler index.handler \
     --zip-file fileb://function.zip \
     --region ap-northeast-2
   ```
-- 생성 결과
 
 ![Lambda 함수 생성 결과](image-1.png)
 
@@ -106,7 +105,7 @@ API Gateway는 클라이언트(웹/앱 등)와 백엔드(Lambda, EC2 등) 사이
 ![GET 메서드 Lambda 통합](image-10.png)
 
 7. URL 확인 (목록 중 ID 포함)
-- 예: `https://osbi91skjc.execute-api.ap-northeast-2.amazonaws.com/dev`
+- 예: `https://<API_ID>.execute-api.ap-northeast-2.amazonaws.com/dev`
 
 ![배포 URL 확인](image-11.png)
 
@@ -198,7 +197,7 @@ Resource of type 'AWS::Logs::LogGroup' ... already exists.
 ## 9) AWS CLI 연습
 - S3 버킷 생성
   ```bash
-  aws s3 mb s3://edumgt-bucket-0001
+  aws s3 mb s3://<BUCKET_NAME>
   ```
 
 ![S3 버킷 생성](image-36.png)
@@ -206,14 +205,14 @@ Resource of type 'AWS::Logs::LogGroup' ... already exists.
 - S3 목록 확인
   ```bash
   aws s3 ls
-  aws s3 ls s3://edumgt-java-education/
+  aws s3 ls s3://<BUCKET_NAME>/
   ```
 
 - 로그 확인
   ```bash
   aws logs describe-log-groups
-  aws logs describe-log-streams --log-group-name /aws/lambda/hello-api-dev-hello
-  aws logs get-log-events --log-group-name /aws/lambda/hello-api-dev-hello --log-stream-name "testlog0000"
+  aws logs describe-log-streams --log-group-name <LOG_GROUP_NAME>
+  aws logs get-log-events --log-group-name <LOG_GROUP_NAME> --log-stream-name <LOG_STREAM_NAME>
   ```
 
 ![CloudWatch Logs 조회](image-35.png)

@@ -1,96 +1,106 @@
-## forking 필요한 github
-## https://github.com/Carlosrincong/AWS-Solutions-Architect-Associate
-## https://github.com/stacksimplify/aws-eks-kubernetes-masterclass
-## https://github.com/stacksimplify/kubernetes-fundamentals
-## https://github.com/stacksimplify/docker-fundamentals
+# AWS Serverless Node 학습 메모 (정리본)
 
-## notion 주소 - https://www.notion.so/CodePipeline-2cc62063ab104fac8ecb70a230d1aca2
-## notion 초대 완료
-## 0630 수업
+> 공개용으로 민감정보(계정 ID, ARN, 개인 링크, API ID 등)는 마스킹했습니다.
 
-## Well-Architecture
-## AWS 측에서 직접 사업 참여하여 인프라 구성한 사례 또는 고객의 성공 사례를 제공
-## https://aws.amazon.com/ko/architecture
-![alt text](image-37.png)
-![alt text](image-38.png)
+## 1) 참고 링크
+- Fork 필요 GitHub
+  - https://github.com/Carlosrincong/AWS-Solutions-Architect-Associate
+  - https://github.com/stacksimplify/aws-eks-kubernetes-masterclass
+  - https://github.com/stacksimplify/kubernetes-fundamentals
+  - https://github.com/stacksimplify/docker-fundamentals
+- Notion
+  - CodePipeline: <REDACTED_NOTION_URL>
 
-## 구성도 이미지를 다운로드하여 ChatGPT 에 업로드 및 분석
-https://chatgpt.com/share/685c91a4-5644-8007-9866-b09cda436e76
+## 2) 일정 메모
+- 0630 수업
+- Notion 초대 완료
 
-## drawio.com
-https://www.drawio.com/ 에서 구성도 그리기
-## drawio 의 다이어그램을 github 연동하여 저장
-![alt text](image-39.png)
+## 3) AWS Well-Architected
+- AWS 공식 아키텍처 사례: https://aws.amazon.com/ko/architecture
 
-## github 와 연동하여, repo 를 지정하여 생성
-![alt text](image-40.png)
+![Well-Architected 소개](image-37.png)
+![Well-Architected 참고](image-38.png)
 
+## 4) 구성도 작성
+- ChatGPT에 구성도 이미지 업로드 후 분석
+  - <REDACTED_CHATGPT_SHARE_URL>
+- draw.io에서 구성도 작성 후 GitHub 연동 저장
 
-## Serverless 테스트
+![draw.io 구성도 작성](image-39.png)
+![GitHub 연동/저장](image-40.png)
 
-## npm install -g serverless 현재 Version 4 로 인증 별도 필요 - npm install -g serverless@3
-## version 3 로 작업
+## 5) Serverless 테스트
+- Serverless CLI 설치
+  - `npm install -g serverless@3` (v4는 별도 인증 필요)
 
-## API gateway 설정
-![alt text](image.png)
+## 6) API Gateway 개요
+API Gateway는 클라이언트(웹/앱 등)와 백엔드 서비스(Lambda, EC2 등) 사이의 **중간 관문** 역할을 합니다.
 
-## API Gateway는 클라이언트(웹/앱 등)와 백엔드 서비스(Lambda, EC2, 마이크로서비스 등) 사이의 중간 관문 역할을 하는 서비스
-## API Gateway는 외부 요청을 받아 적절한 백엔드로 전달하고, 응답을 다시 사용자에게 반환하는 트래픽 관리자입니다.
+![API Gateway 설정 화면](image.png)
 
-| 역할                      | 설명                                                            |
-| ----------------------- | ------------------------------------------------------------- |
-| **1. 요청 라우팅**           | URL 경로 및 HTTP 메서드(GET, POST 등)를 기준으로 Lambda, EC2, 서비스별로 분기 처리 |
-| **2. 보안 처리**            | 인증/인가 (IAM, Cognito, API Key, JWT 등) 기능 제공                    |
-| **3. 속도 제한 (Throttle)** | 초당 요청 수 제한하여 abuse 방지                                         |
-| **4. 로깅 및 모니터링**        | CloudWatch Logs와 연동되어 모든 API 호출 기록 추적 가능                      |
-| **5. CORS 관리**          | 브라우저에서 API 호출 허용 여부 설정 (Access-Control-\* 헤더 처리)              |
-| **6. 응답 변환**            | 백엔드에서 받은 JSON/XML을 포맷 변경하거나 필터링 가능                            |
-| **7. 무서버(서버리스) 연결**     | Lambda 등과 바로 연결 → EC2 없이 서버 실행 가능                             |
+| 역할 | 설명 |
+| --- | --- |
+| 요청 라우팅 | URL 경로/HTTP 메서드 기준으로 Lambda, EC2 등 분기 |
+| 보안 처리 | 인증/인가 (IAM, Cognito, API Key, JWT 등) |
+| 속도 제한 | 초당 요청 수 제한 (Throttle) |
+| 로깅/모니터링 | CloudWatch Logs 연동 |
+| CORS 관리 | 브라우저 API 호출 허용 설정 |
+| 응답 변환 | JSON/XML 포맷 변경/필터링 |
+| 서버리스 연결 | Lambda와 바로 연결 가능 |
 
-## index.js 작성
-## Compress-Archive -Path index.js -DestinationPath function.zip
-## 일반 압축 툴 사용해도 무방
+## 7) Lambda 함수 생성
+- `index.js` 작성 후 압축
+  - `Compress-Archive -Path index.js -DestinationPath function.zip`
+  - 일반 압축 툴 사용 가능
+- Lambda 함수 생성 명령
+  ```bash
+  aws lambda create-function \
+    --function-name edumgt-lambda-api \
+    --runtime nodejs20.x \
+    --role arn:aws:iam::<ACCOUNT_ID>:role/<ROLE_NAME> \
+    --handler index.handler \
+    --zip-file fileb://function.zip \
+    --region ap-northeast-2
+  ```
 
-## 람다펑션 등록
-## 펑션 등록
-aws lambda create-function --function-name edumgt-lambda-api --runtime nodejs20.x --role arn:aws:iam::086015456585:role/Lamda_S3_Test --handler index.handler --zip-file fileb://function.zip --region ap-northeast-2
+![Lambda 함수 생성 결과](image-1.png)
 
-## 결과
-![alt text](image-1.png)
+## 8) API Gateway REST API 생성 및 Lambda 연동
+1. REST API 생성 (AWS Console > API Gateway > REST API)
+2. Lambda 함수 연결: `edumgt-lambda-api`
 
+![Lambda 함수 연결](image-2.png)
+![Lambda 함수 연결 상세](image-3.png)
 
-## REST API 생성
-## AWS Console > API Gateway > REST API 생성
+3. 새 리소스 `/hello` 추가
 
+![리소스 생성](image-5.png)
+![리소스 확인](image-4.png)
 
-## Lambda 함수 연결: edumgt-lambda-api
-![alt text](image-2.png)
-![alt text](image-3.png)
+4. 우측 메서드 생성 클릭
 
-## 새 리소스 /hello 추가
-![alt text](image-5.png)
-![alt text](image-4.png)
+![메서드 생성 버튼](image-6.png)
+![메서드 생성 선택](image-7.png)
+![메서드 생성 입력](image-8.png)
 
-## 우측의 메서드 생성 클릭
-![alt text](image-6.png)
-![alt text](image-7.png)
-![alt text](image-8.png)
+5. 메서드 생성 확인 및 배포
 
-## 메서드 생성 확인 및 배포
-![alt text](image-9.png)
-## GET 메서드 추가 → Lambda 통합 설정
-![alt text](image-10.png)
+![메서드 생성 확인](image-9.png)
 
-## URL 확인 - 목록 중 ID 가 있습니다.
-## https://osbi91skjc.execute-api.ap-northeast-2.amazonaws.com/dev
-![alt text](image-11.png)
+6. GET 메서드 추가 → Lambda 통합 설정
 
-## 스테이지를 생성하지 않으면 API Gateway는 외부 호출 가능한 URL을 생성하지 않습니다.
-## 스테이지 만들고 다시 배포
-![alt text](image-12.png)
-![alt text](image-13.png)
+![GET 메서드 Lambda 통합](image-10.png)
 
-## 기존 API 리소스 삭제 후 다시 생성 - 재배포 할때 다음 주의
-![alt text](image-14.png)
+7. URL 확인 (목록 중 ID 포함)
+- 예: `https://<API_ID>.execute-api.ap-northeast-2.amazonaws.com/dev`
 
+![배포 URL 확인](image-11.png)
 
+8. 스테이지 생성 후 재배포
+
+![스테이지 생성](image-12.png)
+![재배포](image-13.png)
+
+9. 기존 API 리소스 삭제 후 재생성 (재배포 시 주의)
+
+![리소스 재생성](image-14.png)
