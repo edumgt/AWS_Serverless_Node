@@ -1,0 +1,15 @@
+service: hello-api-python
+
+provider:
+  name: aws
+  runtime: python3.12
+  region: ap-northeast-2
+
+functions:
+  hello:
+    handler: handler.hello
+    events:
+      - http:
+          path: hello
+          method: get
+          cors: true
