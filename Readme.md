@@ -11,9 +11,7 @@
 - Notion
   - CodePipeline: <REDACTED_NOTION_URL>
 
-## 2) 일정 메모
-- 0630 수업
-- Notion 초대 완료
+
 
 ## 3) AWS Well-Architected
 - AWS 공식 아키텍처 사례: https://aws.amazon.com/ko/architecture
