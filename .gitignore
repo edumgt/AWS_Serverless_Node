@@ -17,3 +17,6 @@ edumgt-key
 /n*
 *.csv
 .env
+.serverless/
+*.zip
+*.mp4
